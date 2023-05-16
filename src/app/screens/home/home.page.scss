@@ -1,0 +1,21 @@
+ion-content {
+    --padding-start: 2rem;
+    --padding-end: 2rem;    
+
+    .header {
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+            
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #515151;
+            margin: 1rem;
+        }
+    }
+    
+}
+

@@ -1,0 +1,7 @@
+{
+  "name": "Ionic-TechSpace",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
