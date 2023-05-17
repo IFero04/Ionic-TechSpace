@@ -1,6 +1,6 @@
 <ion-content>
   <div class="header">
-      <ion-button shape="round" fill="clear" color="light">
+      <ion-button (click)="goBack()" shape="round" fill="clear" color="light">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
       <img src="assets/register.png" alt=""/>
@@ -29,7 +29,7 @@
         Criar Conta
       </ion-button>
   
-      <a>Ja tem conta? Inicie Sessão</a>
+      <a (click)="goLogin()">Ja tem conta? Inicie Sessão</a>
 
     </ion-card>
   </div>
