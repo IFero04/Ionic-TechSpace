@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,8 +10,12 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
   standalone: true,
   imports: [IonicModule, ExploreContainerComponent]
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit{
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.navigate(['register'])
+  }
 
 }

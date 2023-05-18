@@ -10,26 +10,56 @@
     <ion-card>
       <h1>Inscreva-se</h1>
 
-      <ion-item>
-        <ion-icon name="person"></ion-icon>
-        <ion-input type="text" placeholder="Nome"></ion-input>
-      </ion-item>
+      <form [formGroup]="registerForm" (ngSubmit)="registe()" novalidate>
+        <div class="name">
+          <ion-item>
+            <ion-icon name="person" [color]="(registerForm.controls['name'].touched) ? (registerForm.controls['name'].valid ? 'success' : 'danger'): ''"></ion-icon>
+            <ion-input label="Nome" label-placement="floating" fill="solid" type="text" formControlName="name" required></ion-input>
+          </ion-item>
+          
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['name'].errors?.['required']">
+            Nome é de preenchimento obrigatório
+          </ion-text>
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['name'].errors?.['pattern']">
+            Nome deverá ter pelo menos nome e sobrenome.
+          </ion-text>
+        </div>
 
-      <ion-item>
-        <ion-icon name="mail"></ion-icon>
-        <ion-input type="email" placeholder="Email"></ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-icon name="lock-closed"></ion-icon>
-        <ion-input type="password" placeholder="*******"></ion-input>
-      </ion-item>
-      
-      <ion-button expand="block" color="medium"> 
-        Criar Conta
-      </ion-button>
+        <div class="email">
+          <ion-item>
+            <ion-icon name="mail" [color]="(registerForm.controls['email'].touched) ? (registerForm.controls['email'].valid ? 'success' : 'danger'): ''"></ion-icon>
+            <ion-input label="Email" label-placement="floating" fill="solid" type="email" formControlName="email" required></ion-input>
+          </ion-item>
+          
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['email'].errors?.['required']">
+            Email é de preenchimento obrigatório
+          </ion-text>
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['email'].errors?.['email']">
+            Email inválido
+          </ion-text>
+        </div>
+        
+
+        <div class="password">
+          <ion-item>
+            <ion-icon name="lock-closed" [color]="(registerForm.controls['password'].touched) ? (registerForm.controls['password'].valid ? 'success' : 'danger'): ''"></ion-icon>
+            <ion-input label="Password" label-placement="floating" fill="solid" type="password" formControlName="password" required></ion-input>
+          </ion-item>
+
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['password'].errors?.['required']">
+            Password é de preenchimento obrigatório
+          </ion-text>
+          <ion-text class="ion-padding" color="danger" *ngIf="isRegisted && registerForm.controls['password'].errors?.['minlength']">
+            Password deverá ter pelo menos 2 caracteres
+          </ion-text>
+        </div>
+
+
+        <ion-button expand="block" color="medium" type="submit">Criar Conta</ion-button>
+      </form>
   
-      <a (click)="goLogin()">Ja tem conta? Inicie Sessão</a>
+      <p>Ja tem conta? <span (click)="goLogin()"><strong>Iniciar Sessão</strong></span></p>
 
     </ion-card>
   </div>

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
+
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
@@ -27,6 +28,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  goRegister() {
+    this.router.navigate(['/register'])
+  }
+
   goBack() {
     this.router.navigate([''])
   }
@@ -39,6 +44,10 @@ export class LoginPage implements OnInit {
       console.log(this.loginForm.value);
       return true;
     }
+  }
+
+  recuperarSenha() {
+    console.log('Nabo')
   }
 
   get formControls() {

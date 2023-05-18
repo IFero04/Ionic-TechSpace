@@ -11,30 +11,27 @@ ion-content {
     }
 
     ion-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        gap: 31px;
-        border-radius: 35px;
-        margin: 0 5%;
-        
+        border-radius: 30px;
+        margin: 0 5% 8px 5%;
         background-color: #fff;
-        color: #000000;
+        color: #000;
 
         h1 {
             font-weight: 700;
             font-size: 34px;
+            text-align: center;
+            margin-bottom: 31px;
         }
         
         form {
             .email, .password {
                 margin-bottom: 31px;
+
                 ion-item {
                     --background: rgba(0, 0, 0, 0.05);
                     --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                     --border-radius: 30px;
+                    margin: 0 8px;
 
                     ion-input {
                         font-size: 17px;
@@ -46,20 +43,28 @@ ion-content {
             }
             
             ion-button {
-                font-weight: 600;
-                font-size: 17px;
-                width: 110%;
                 --border-radius: 30px;
                 --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                font-weight: 600;
+                font-size: 17px;
+                margin: 0 8px;
+                margin-bottom: 31px;
             }
         }
         
-        a {
-            text-decoration: none;
-            font-style: normal;
-            font-weight: 700;
+        p {
             font-size: 13px;
-            color: #000000;
+            color: #000;
+            text-align: center;
+            strong {
+                font-weight: bold;
+            }
+            span {
+                cursor: pointer;
+            }
+        }   
+        
+        .help {
             margin-bottom: 20px;
         }
     }

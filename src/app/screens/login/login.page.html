@@ -12,10 +12,11 @@
 
       <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
         <div class="email">
-          <ion-item lines="full">
-            <ion-icon name="mail"></ion-icon>
+          <ion-item>
+            <ion-icon name="mail" [color]="(loginForm.controls['email'].touched) ? (loginForm.controls['email'].valid ? 'success' : 'danger'): ''"></ion-icon>
             <ion-input label="Email" label-placement="floating" fill="solid" type="email" formControlName="email" required></ion-input>
           </ion-item>
+          
           <ion-text class="ion-padding" color="danger" *ngIf="isLogedIn && loginForm.controls['email'].errors?.['required']">
             Email é de preenchimento obrigatório
           </ion-text>
@@ -27,9 +28,10 @@
         
         <div class="password">
           <ion-item>
-            <ion-icon name="lock-closed"></ion-icon>
+            <ion-icon name="lock-closed" [color]="(loginForm.controls['password'].touched) ? (loginForm.controls['password'].valid ? 'success' : 'danger'): ''"></ion-icon>
             <ion-input label="Password" label-placement="floating" fill="solid" type="password" formControlName="password" required></ion-input>
           </ion-item>
+
           <ion-text class="ion-padding" color="danger" *ngIf="isLogedIn && loginForm.controls['password'].errors?.['required']">
             Password é de preenchimento obrigatório
           </ion-text>
@@ -42,8 +44,12 @@
         <ion-button expand="block" color="medium" type="submit">Iniciar Sessão</ion-button>
       </form>
   
-      <a>Esqueceste-te da palavra-chave?</a>
+      <div class="help">
+        <p>Esqueceste-te da palavra-chave? <span (click)="recuperarSenha()"><strong>Recuperar Senha</strong></span></p>
 
+        <p>Ainda nao tens conta? <span (click)="goRegister()"><strong>Criar Conta</strong></span></p>
+      </div>
+      
     </ion-card>
   </div>
 </ion-content>
