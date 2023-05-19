@@ -1,3 +1,34 @@
 <ion-content>
-  <p>Bem Vindo - {{user.name}}</p>
+  <h1>Olá, {{user.name}}!</h1>
+
+  <button>
+    <ion-icon slot="start" name="cart" color="primary"></ion-icon>
+    Compras
+  </button>
+  <button>
+    <ion-icon slot="start" name="bicycle" color="primary"></ion-icon>
+      Serviços
+  </button>
+  <button>
+    <ion-icon slot="start" name="heart" color="primary"></ion-icon>
+    Favoritos
+  </button>
+  <button>
+    <ion-icon slot="start" name="mail" color="primary"></ion-icon>
+    Mensagens
+  </button>
+  <button>
+    <ion-icon slot="start" name="notifications" color="primary"></ion-icon>
+    Notificações
+  </button>
+
+  <h2>Os Meus Dados</h2>
+  <ion-item button detail="true">
+      <p>Dados Pessoais</p>
+  </ion-item>
+  <ion-item button detail="true">
+      <p>Gestão de Moradas</p>
+  </ion-item>
+
+  <p class="logOut" (click)="logOut()">TERMINAR SESSÃO</p>
 </ion-content>

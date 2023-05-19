@@ -31,4 +31,9 @@ export class ProfilePage  implements  OnInit{
     }
   }
 
+  logOut() {
+    this.userService.logout();
+    this.router.navigate(['/tabs/home']);
+  }
+
 }

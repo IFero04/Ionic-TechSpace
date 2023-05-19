@@ -31,7 +31,7 @@ export class UserService {
     await this.storage.defineDriver(CordovaSQLiteDriver);
     const storage = await this.storage.create();
     const user = await storage.get('user');
-    if (user) {
+    if (user.id > 0) {
       this.user = user;
       this.isLoggedIn = true;
     }
