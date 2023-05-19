@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { Category } from 'src/app/models/category.model';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +16,13 @@ import { Category } from 'src/app/models/category.model';
   imports: [IonicModule, ExploreContainerComponent, FormsModule, SearchbarComponent],
 })
 export class HomePage {
+  user: User = {} as User
   categories: Category[] = [];
 
-  constructor() {}
+  constructor(private userservice: UserService) {}
 
   ngOnInit() {
+    this.user = this.userservice.getUser();
     this.getCategories();
   }
 

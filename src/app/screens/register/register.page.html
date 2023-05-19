@@ -55,11 +55,13 @@
           </ion-text>
         </div>
 
-
+        <ion-text *ngIf="errorMessage" color="danger">{{ errorMessage }}</ion-text>
         <ion-button expand="block" color="medium" type="submit">Criar Conta</ion-button>
       </form>
   
       <p>Ja tem conta? <span (click)="goLogin()"><strong>Iniciar Sessão</strong></span></p>
+      
+
 
     </ion-card>
   </div>

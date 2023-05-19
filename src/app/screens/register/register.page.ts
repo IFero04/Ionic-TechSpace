@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +17,10 @@ import { Router } from '@angular/router';
 export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
-  isRegisted: boolean;
+  isRegisted: boolean = false;
+  errorMessage: string = '';
   
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     const namePattern = /^[A-Za-z]+(\s+[A-Za-z]+)+$/;
 
     this.registerForm =  new FormGroup({
@@ -25,7 +28,6 @@ export class RegisterPage implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
-    this.isRegisted = false;
    }
 
   ngOnInit() {
@@ -39,14 +41,25 @@ export class RegisterPage implements OnInit {
     this.router.navigate([''])
   }
 
-  registe() {
+  async registe() {
     this.isRegisted = true;
-    if (!this.registerForm.valid) {
+    this.errorMessage = '';
+    if (this.registerForm.invalid) {
       return false;
-    } else {
-      console.log(this.registerForm.value);
-      return true;
     }
+    try {
+      const name = this.registerForm.controls['name'].value;
+      const email = this.registerForm.controls['email'].value.toLowerCase();
+      const password = this.registerForm.controls['password'].value;
+      const user: User = {name: name, email: email, password: password};
+
+      await this.userService.insertUser(user);
+      this.router.navigateByUrl('/tabs/home');
+      return true;
+    } catch (error: any) {
+      this.errorMessage = error.toString();
+    }
+    return true;
   }
 
   get formControls() {

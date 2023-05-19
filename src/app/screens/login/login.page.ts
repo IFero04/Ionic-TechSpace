@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -15,35 +17,36 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
-  isLogedIn: boolean;
+  isLogedIn: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private userService: UserService) { 
     this.loginForm =  new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
-    this.isLogedIn = false;
   }
 
   ngOnInit() {
   }
 
-  goRegister() {
-    this.router.navigate(['/register'])
-  }
-
-  goBack() {
-    this.router.navigate([''])
-  }
-
-  login() {
+  async login() {
     this.isLogedIn = true;
-    if (!this.loginForm.valid) {
+    this.errorMessage = '';
+    if (this.loginForm.invalid) {
       return false;
-    } else {
-      console.log(this.loginForm.value);
-      return true;
     }
+    try {
+      const email = this.loginForm.controls['email'].value;
+      const password = this.loginForm.controls['password'].value;
+
+      await this.userService.login(email, password);
+      this.router.navigateByUrl('/tabs/home');
+      return true;
+    } catch(error: any) {
+      this.errorMessage = error.toString();
+    } 
+    return true;
   }
 
   recuperarSenha() {
@@ -52,5 +55,13 @@ export class LoginPage implements OnInit {
 
   get formControls() {
     return this.loginForm.controls;
+  }
+
+  goRegister() {
+    this.router.navigate(['/register'])
+  }
+
+  goBack() {
+    this.router.navigate([''])
   }
 }
