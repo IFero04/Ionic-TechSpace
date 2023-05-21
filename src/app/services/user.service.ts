@@ -51,7 +51,6 @@ export class UserService {
   }
 
   async logout() {
-
     this.user = {} as User;
     this.isLoggedIn = false;
     await this.storage.set('user', this.user);
@@ -113,14 +112,17 @@ export class UserService {
       .from('users')
       .update({
         name: user.name,
+        surname: user.surname,
         email: user.email,
-        password: user.password
+        password: user.password,
       })
       .eq('id', user.id);
 
     if (error) {
       throw new Error('Erro ao atualizar utilizador');
     }
+
+    this.setlocal(user);
   }
 
   getUser(): User{

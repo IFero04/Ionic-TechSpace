@@ -1,29 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-confirm-modal',
   templateUrl: './confirm-modal.component.html',
   styleUrls: ['./confirm-modal.component.scss'],
-  template: `
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>{{ title }}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="fecharModal(false)">Não</ion-button>
-        <ion-button (click)="fecharModal(true)">Sim</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <div class="ion-padding">{{ message }}</div>
-  </ion-content>
-  `,
+  standalone: true,
+  imports: [CommonModule, IonicModule],
 })
-export class ConfirmModalComponent  implements OnInit {
+export class ConfirmModalComponent {
+  @Input() message: string;
+  @Input() title: string;
 
-  constructor() { }
+  constructor(private modalController: ModalController) {
+    this.message = '';
+    this.title = '';
+  }
 
-  ngOnInit() {}
-
+  async fecharModal(resposta: boolean) {
+    await this.modalController.dismiss(resposta);
+  }
 }

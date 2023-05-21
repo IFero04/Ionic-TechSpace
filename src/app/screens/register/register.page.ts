@@ -21,7 +21,7 @@ export class RegisterPage implements OnInit {
   errorMessage: string = '';
   
   constructor(private router: Router, private userService: UserService) {
-    const namePattern = /^[A-Za-z]+(\s+[A-Za-z]+)+$/;
+    const namePattern = /^[A-Za-z]+\s+[A-Za-z]+$/;
 
     this.registerForm =  new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(namePattern)]),
@@ -48,11 +48,16 @@ export class RegisterPage implements OnInit {
       return false;
     }
     try {
-      const name = this.registerForm.controls['name'].value;
+      const fullName = this.registerForm.controls['name'].value;
       const email = this.registerForm.controls['email'].value.toLowerCase();
       const password = this.registerForm.controls['password'].value;
-      const user: User = {name: name, email: email, password: password};
 
+      const nameParts = fullName.split(' ');
+      const name = nameParts[0];
+      const surname = nameParts.slice(1).join(' ');
+
+      
+      const user: User = { name: name, surname: surname, email: email, password: password };
       await this.userService.insertUser(user);
       this.router.navigateByUrl('/tabs/home');
       return true;

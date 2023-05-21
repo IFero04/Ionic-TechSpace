@@ -1,0 +1,66 @@
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Dados Pessoais</h1>
+  </div>
+
+  <div class="form">
+
+    <form [formGroup]="updateForm" (ngSubmit)="update()" novalidate>
+      <div class="name">
+        <ion-label>Nome</ion-label>
+        <ion-input [ngModel]="user.name" type="text" fill="outline" formControlName="name" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['name'].errors?.['required']">
+          Nome é de preenchimento obrigatório
+        </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['name'].errors?.['pattern']">
+          Nome inválido
+        </ion-text>
+      </div>
+      
+      <div class="apelido">
+        <ion-label>Apelido</ion-label>
+        <ion-input [ngModel]="user.surname" type="text" fill="outline" formControlName="surname" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['surname'].errors?.['required']">
+          Apelido é de preenchimento obrigatório
+        </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['surname'].errors?.['pattern']">
+          Apelido inválido
+        </ion-text>
+      </div>
+
+      <div class="email">
+        <ion-label>Email</ion-label>
+        <ion-input [ngModel]="user.email" type="text" fill="outline" formControlName="email" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['email'].errors?.['required']">
+          Email é de preenchimento obrigatório
+        </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['email'].errors?.['email']">
+          Email inválido
+        </ion-text>
+      </div>
+
+      <div class="password">
+        <ion-label>Password</ion-label>
+        <ion-input [ngModel]="user.password" type="text" fill="outline" formControlName="password" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['password'].errors?.['required']">
+          Password é de preenchimento obrigatório
+        </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="isUpdated && updateForm.controls['password'].errors?.['minlength']">
+          Password deverá ter pelo menos 2 caracteres
+        </ion-text>
+      </div>
+
+      <ion-text *ngIf="errorMessage" color="danger">{{ errorMessage }}</ion-text>
+      <ion-button expand="block" color="medium" type="submit">Guardar Alterações</ion-button>
+    </form>
+
+  </div>
+    
+
+</ion-content>

@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss'],
   standalone: true,
-  imports: [CommonModule,IonicModule],
+  imports: [CommonModule, IonicModule],
 })
 
 export class SearchbarComponent {
