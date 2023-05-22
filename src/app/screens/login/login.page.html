@@ -40,7 +40,7 @@
           </ion-text>
         </div>
         
-        
+        <ion-text *ngIf="errorMessage" color="danger">{{ errorMessage }}</ion-text>
         <ion-button expand="block" color="medium" type="submit">Iniciar Sessão</ion-button>
       </form>
   

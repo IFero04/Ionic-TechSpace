@@ -6,6 +6,8 @@ import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/user.model';
 import { GestaoDadosModalComponent } from 'src/app/components/gestao-dados-modal/gestao-dados-modal.component';
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
+import { Morada } from 'src/app/models/morada.module';
+import { MoradasService } from 'src/app/services/moradas.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +20,7 @@ export class ProfilePage  implements  OnInit{
 
   user: User = {} as User;
 
-  constructor(private router: Router, private userService: UserService, private modalCtrl: ModalController) {
+  constructor(private router: Router, private userService: UserService, private moradasservice: MoradasService,private modalCtrl: ModalController) {
   }
 
   async ngOnInit() {
@@ -27,6 +29,7 @@ export class ProfilePage  implements  OnInit{
 
   logOut() {
     this.userService.logout();
+    this.user = this.userService.getUser();
     this.router.navigate(['/tabs/home']);
   }
 

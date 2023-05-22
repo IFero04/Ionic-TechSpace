@@ -5,6 +5,18 @@
     <h1>Gestão de Moradas</h1>
   </div>
 
+  <div class="moradas">
+    <ion-list *ngIf="!isLoadingMoradas">
+      <ion-card *ngFor="let morada of moradas">
+        {{morada.name}}
+        {{morada.NIF}}
+        {{morada.address}}
+        {{morada.cod_postal}}
+      </ion-card>
+      
+    </ion-list>
+  </div>
+
   <ion-button expand="block" shape="round" (click)="clickManageMoradas()" >
     Adicionar Nova Morada
   </ion-button>

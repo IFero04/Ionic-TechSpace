@@ -88,7 +88,7 @@ export class UserService {
       .single();
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error('O email nao foi registado ainda.');
     }
 
     return data as User;

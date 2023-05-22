@@ -7,6 +7,8 @@ import { SearchbarComponent } from '../../components/searchbar/searchbar.compone
 import { Category } from 'src/app/models/category.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -19,12 +21,17 @@ export class HomePage {
   user: User = {} as User
   categories: Category[] = [];
 
-  constructor(private userservice: UserService) {}
+  constructor(private userservice: UserService, private router: Router) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.user = this.userservice.getUser();
     this.getCategories();
   }
+
+  click() {
+    this.router.navigate(['/morada'])
+  }
+
 
   getCategories() {
     this.categories = [

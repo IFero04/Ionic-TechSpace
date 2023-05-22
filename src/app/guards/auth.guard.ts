@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     //!this.auth.isLoggedIn
-    if (false) {
+    if (!this.auth.isLoggedIn) {
       this.router.navigate(['/register']);
       return false;
     }

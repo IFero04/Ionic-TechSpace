@@ -2,25 +2,47 @@ import { Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { SupabaseService } from './supabase.service';
 import { Morada } from '../models/morada.module';
+import { User } from '../models/user.model';
+import { UserService } from './user.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoradasService {
   private supabaseCliente: SupabaseClient;
-  private moradas: Morada[];
+  private moradas: Morada[] = [];
+  private user: User = {} as User;
 
-  constructor(private supabaseservice: SupabaseService) { 
+  moradasSubject: Subject<Morada[]> = new Subject<Morada[]>();
+
+  constructor(private supabaseservice: SupabaseService, private userservice: UserService) { 
     this.supabaseCliente = supabaseservice.getBD();
+    this.user = this.userservice.getUser();
     this.moradas = [];
-  }
-
-  getMoradas(): Morada[] {
-    return this.moradas;
+    this.init();
   }
 
   async init() {
-    
+    const moradasUser = await this.getMoradasBD();
+    if ( moradasUser ) {
+      this.moradas = moradasUser;
+    }
+    this.notifyMoradasChange();
+  }
+
+  async getMoradasBD(): Promise<Morada[]> {
+    const {data, error} = await this.supabaseCliente
+    .from('address')
+    .select('*')
+    .eq('id_user', this.user.id)
+    .order('id', {ascending: true})
+
+    if (error) {
+      throw new Error('Erro ao obter as moradas.');
+    }
+
+    return data as Morada[];
   }
 
   async insertMorada(morada: Morada, userId: number) {
@@ -37,6 +59,8 @@ export class MoradasService {
     if (error) {
       throw error;
     }
+
+    this.notifyMoradasChange();
 
     return data;
   }
@@ -61,6 +85,7 @@ export class MoradasService {
       throw new Error('Erro ao atualizar utilizador');
     }
 
+    this.notifyMoradasChange();
   }
 
   async deleteMorada(id: number): Promise<void> {
@@ -70,5 +95,15 @@ export class MoradasService {
     }
 
     await this.supabaseCliente.from('address').delete().eq('id', id);
+
+    this.notifyMoradasChange();
+  }
+
+  private notifyMoradasChange() {
+    this.moradasSubject.next(this.moradas);
+  }
+
+  getMoradas(): Morada[] {
+    return this.moradas;
   }
 }
