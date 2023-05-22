@@ -1,3 +1,64 @@
-<p>
-  gestao-moradas-modal works!
-</p>
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>{{title}}</h1>
+  </div>
+
+  <div class="form">
+
+    <form [formGroup]="moradaForm" (ngSubmit)="onClick()" novalidate>
+      <div class="NIF">
+        <ion-label>NIF</ion-label>
+        <ion-input [ngModel]="morada?.NIF ?? ''" type="text" fill="outline" formControlName="NIF" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['NIF'].errors?.['required']">
+          NIF é de preenchimento obrigatório
+        </ion-text>
+      </div>
+
+      <div class="address">
+        <ion-label>Address</ion-label>
+        <ion-input [ngModel]="morada?.address ?? ''" type="text" fill="outline" formControlName="address" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['address'].errors?.['required']">
+          Address é de preenchimento obrigatório
+        </ion-text>
+      </div>
+
+      <div class="cod_postal">
+        <ion-label>Codigo Postal</ion-label>
+        <ion-input [ngModel]="morada?.cod_postal ?? ''" type="text" fill="outline" formControlName="cod_postal" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['cod_postal'].errors?.['required']">
+          Codigo Postal é de preenchimento obrigatório
+        </ion-text>
+      </div>
+
+      <div class="city">
+        <ion-label>Cidade</ion-label>
+        <ion-input [ngModel]="morada?.city ?? ''" type="text" fill="outline" formControlName="city" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['city'].errors?.['required']">
+          Cidade é de preenchimento obrigatório
+        </ion-text>
+      </div>
+
+      <div class="phone">
+        <ion-label>Telefone</ion-label>
+        <ion-input [ngModel]="morada?.phone ?? ''" type="text" fill="outline" formControlName="phone" required></ion-input>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['phone'].errors?.['required']">
+          Telefone é de preenchimento obrigatório
+        </ion-text>
+      </div>
+
+      <ion-text *ngIf="errorMessage" color="danger">{{ errorMessage }}</ion-text>
+      <ion-button expand="block" color="medium" type="submit">{{button}}</ion-button>
+    </form>
+
+
+  </div>
+    
+
+</ion-content>

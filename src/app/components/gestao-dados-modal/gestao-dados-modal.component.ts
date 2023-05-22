@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-gestao-dados-modal',
@@ -13,12 +14,14 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } 
   imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
 })
 
-export class GestaoDadosModalComponent implements OnInit{
-
-  updateForm: FormGroup;
+export class GestaoDadosModalComponent{
   isUpdated: boolean = false;
   errorMessage: string = '';  
-  user: User = {} as User;
+  updateForm: FormGroup;
+
+  isLoadingUser: boolean;
+  user: User;
+  userSubscription: Subscription;
 
   constructor(private modalController: ModalController, private userService: UserService) {
     const pattern = /^[A-Za-z]+$/;
@@ -29,10 +32,13 @@ export class GestaoDadosModalComponent implements OnInit{
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(2)])
     });
-  }
 
-  ngOnInit(): void {
-    this.user = this.userService.getUser();
+    this.user = {} as User;
+    this.isLoadingUser = true; 
+    this.userSubscription = this.userService.userSubject.subscribe((user: User) => {
+      this.user = user;
+    });
+    this.isLoadingUser = false; 
   }
 
   async update() {

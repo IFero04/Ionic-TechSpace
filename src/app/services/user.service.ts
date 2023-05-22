@@ -4,6 +4,7 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { SupabaseService } from './supabase.service';
 import { User } from '../models/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -11,49 +12,58 @@ import { User } from '../models/user.model';
 })
 
 export class UserService {
-  private supabaseCliente: SupabaseClient;
+  private supabaseClient: SupabaseClient;
+
   private user: User;
   isLoggedIn: boolean = false;
+  userSubject: BehaviorSubject<User>;
+  
 
   constructor(private storage: Storage,private supabaseservice: SupabaseService) { 
-    this.supabaseCliente = supabaseservice.getBD();
+    this.supabaseClient = supabaseservice.getBD();
     this.user = {} as User;
+    this.userSubject = new BehaviorSubject<User>(this.user);
     this.init();
-  }
-
-  async setlocal(user: User) {
-    this.isLoggedIn = true;
-    this.user = user;
-    await this.storage.set('user', this.user);
   }
 
   async init() {
     await this.storage.defineDriver(CordovaSQLiteDriver);
     const storage = await this.storage.create();
     const user = await storage.get('user');
-    if (user.id > 0) {
+    if (user) {
       this.user = user;
       this.isLoggedIn = true;
     }
+    this.notifyUserChange();
   }
+
+  async setLocal(user: User) {
+    this.isLoggedIn = true;
+    this.user = user;
+    await this.storage.set('user', this.user);
+    this.notifyUserChange();
+  }
+
+  async logout() {
+    this.isLoggedIn = false;
+    this.user = {} as User;
+    await this.storage.set('user', this.user);
+    this.notifyUserChange();
+  }
+
+  // CRUD //
 
   async login(email: string, password: string) {
     const user = await this.getUserByEmail(email);
     if (user) {
       if (user.password === password) {
-        this.setlocal(user);
+        this.setLocal(user);
       } else {
         throw new Error('Palavra-chave errada.');
       }
     } else {
       throw new Error('O email nao foi registado ainda.')
     }
-  }
-
-  async logout() {
-    this.user = {} as User;
-    this.isLoggedIn = false;
-    await this.storage.set('user', this.user);
   }
 
   async insertUser(user: User) {
@@ -66,22 +76,22 @@ export class UserService {
       throw new Error('O email já se encontra registado no sistema.');
     }
 
-    const {data, error} = await this.supabaseCliente
+    const {data, error} = await this.supabaseClient
       .from('users')
       .insert([user])
       .single();
 
     if (error) {
-      throw Error;
+      throw new Error('Erro ao inserir utilizador.');
     }
 
-    this.setlocal(user);
+    this.setLocal(user);
 
     return data;
   }
 
-  async getUserByEmail(email: string): Promise<User> {
-    const {data, error} = await this.supabaseCliente
+  async getUserByEmail(email: string): Promise<User | null> {
+    const {data, error} = await this.supabaseClient
       .from('users')
       .select('*')
       .eq('email', email)
@@ -91,11 +101,11 @@ export class UserService {
       throw new Error('O email nao foi registado ainda.');
     }
 
-    return data as User;
+    return data as User | null;
   }
 
   async isEmailExists(email: string): Promise<boolean> {
-    const { data, error } = await this.supabaseCliente
+    const { data, error } = await this.supabaseClient
       .from('users')
       .select('email')
       .eq('email', email);
@@ -108,7 +118,7 @@ export class UserService {
   }
 
   async updateUser(user: User): Promise<void> {
-    const {data, error} = await this.supabaseCliente
+    const {data, error} = await this.supabaseClient
       .from('users')
       .update({
         name: user.name,
@@ -122,10 +132,12 @@ export class UserService {
       throw new Error('Erro ao atualizar utilizador');
     }
 
-    this.setlocal(user);
+    this.setLocal(user);
   }
 
-  getUser(): User{
-    return this.user;
+  // Manage Data // 
+
+  private notifyUserChange() {
+    this.userSubject.next(this.user);
   }
 }

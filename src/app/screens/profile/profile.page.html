@@ -1,5 +1,5 @@
-<ion-content>
-  <h1>Olá, {{user.name}}!</h1>
+<ion-content *ngIf="!isLoadingUser">
+  <h1 >Olá, {{user.name}}!</h1>
 
   <button>
     <ion-icon slot="start" name="cart" color="primary"></ion-icon>
