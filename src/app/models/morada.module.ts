@@ -1,7 +1,10 @@
 export interface Morada {
     id?: number;
-    name: string;
+    id_user?: number;
+    name?: string;
     NIF: string;
     address: string;
-    cod_postal:string
+    cod_postal:string;
+    city: string;
+    phone: string
 }

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormsModule } from '@angular/forms';
-
+import { UserService } from 'src/app/services/user.service';
 import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { Category } from 'src/app/models/category.model';
-import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { GestaoMoradasModalComponent } from 'src/app/components/gestao-moradas-modal/gestao-moradas-modal.component';
 
 
 @Component({
@@ -17,21 +16,18 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, ExploreContainerComponent, FormsModule, SearchbarComponent],
 })
-export class HomePage {
-  user: User = {} as User
+export class HomePage implements OnInit{
   categories: Category[] = [];
 
-  constructor(private userservice: UserService, private router: Router) {}
+  constructor(private router: Router, private modalCtrl: ModalController) { }
 
   async ngOnInit() {
-    this.user = this.userservice.getUser();
     this.getCategories();
   }
 
   click() {
     this.router.navigate(['/morada'])
   }
-
 
   getCategories() {
     this.categories = [

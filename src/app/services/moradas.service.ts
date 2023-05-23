@@ -4,22 +4,29 @@ import { SupabaseService } from './supabase.service';
 import { Morada } from '../models/morada.module';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoradasService {
-  private supabaseCliente: SupabaseClient;
+  private supabaseClient: SupabaseClient;
+
+  private user: User;
+  userSubscription: Subscription;
+
   private moradas: Morada[] = [];
-  private user: User = {} as User;
+  moradasSubject: BehaviorSubject<Morada[]>;
 
-  moradasSubject: Subject<Morada[]> = new Subject<Morada[]>();
 
-  constructor(private supabaseservice: SupabaseService, private userservice: UserService) { 
-    this.supabaseCliente = supabaseservice.getBD();
-    this.user = this.userservice.getUser();
+  constructor(private supabaseService: SupabaseService, private userService: UserService) { 
+    this.supabaseClient = supabaseService.getBD();
+    this.user = {} as User;
+    this.userSubscription = this.userService.userSubject.subscribe((user: User) => {
+      this.user = user;
+    });
     this.moradas = [];
+    this.moradasSubject = new BehaviorSubject<Morada[]>(this.moradas);
     this.init();
   }
 
@@ -31,53 +38,64 @@ export class MoradasService {
     this.notifyMoradasChange();
   }
 
+  // CRUD //
+
   async getMoradasBD(): Promise<Morada[]> {
-    const {data, error} = await this.supabaseCliente
-    .from('address')
-    .select('*')
-    .eq('id_user', this.user.id)
-    .order('id', {ascending: true})
+    if (this.user.id) {
+      const {data, error} = await this.supabaseClient
+      .from('address')
+      .select('*')
+      .eq('id_user', this.user.id)
+      .order('id', {ascending: true})
 
-    if (error) {
-      throw new Error('Erro ao obter as moradas.');
+      if (error) {
+        throw new Error('Erro ao obter as moradas.');
+      }
+
+      return data as Morada[];
     }
-
-    return data as Morada[];
+    
+    return [];
   }
 
-  async insertMorada(morada: Morada, userId: number) {
-    this.moradas.push(morada);
-    if (!morada.id) {
-      morada.id = Date.now();
+  async insertMorada(address: Morada) {
+    if (!address.id) {
+      address.id = Date.now();
     }
+    address.id_user = this.user.id;
+    address.name = this.user.name + " " + this.user.surname;
 
-    const {data, error} = await this.supabaseCliente
+    const {data, error} = await this.supabaseClient
       .from('address')
-      .insert([{ ...morada, id_user: userId}])
+      .insert([address])
       .single()
 
     if (error) {
       throw error;
     }
 
+    this.moradas.push(address);
     this.notifyMoradasChange();
 
     return data;
   }
 
   async updateMorada(morada: Morada): Promise<void> {
+    morada.id_user = this.user.id;
+    morada.name = this.user.name + " " + this.user.surname;
     const index = this.moradas.findIndex(t => t.id === morada.id);
     if (index >= 0) {
-      this.moradas[index] = morada;
+      this.moradas[index] = morada
     }
 
-    const {data, error} = await this.supabaseCliente
+    const {data, error} = await this.supabaseClient
       .from('address')
       .update({
-        name: morada.name,
         NIF: morada.NIF,
         address: morada.address,
         cod_postal: morada.cod_postal,
+        city: morada.city,
+        phone: morada.phone,
       })
       .eq('id', morada.id);
 
@@ -94,16 +112,14 @@ export class MoradasService {
       this.moradas.splice(index, 1);
     }
 
-    await this.supabaseCliente.from('address').delete().eq('id', id);
+    await this.supabaseClient.from('address').delete().eq('id', id);
 
     this.notifyMoradasChange();
   }
 
+  // Manage Data // 
+
   private notifyMoradasChange() {
     this.moradasSubject.next(this.moradas);
-  }
-
-  getMoradas(): Morada[] {
-    return this.moradas;
   }
 }

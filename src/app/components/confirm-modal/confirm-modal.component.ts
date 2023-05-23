@@ -9,6 +9,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
   standalone: true,
   imports: [CommonModule, IonicModule],
 })
+
 export class ConfirmModalComponent {
   @Input() message: string;
   @Input() title: string;

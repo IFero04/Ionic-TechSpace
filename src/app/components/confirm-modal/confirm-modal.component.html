@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{ title }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="fecharModal(false)">Não</ion-button>
+        <ion-button (click)="fecharModal(true)">Sim</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+    <div class="ion-padding">{{ message }}</div>
+</ion-content>

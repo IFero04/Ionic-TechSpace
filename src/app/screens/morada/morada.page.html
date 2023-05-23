@@ -12,12 +12,25 @@
         {{morada.NIF}}
         {{morada.address}}
         {{morada.cod_postal}}
+        {{morada.city}}
+        {{morada.phone}}
+
+        <ion-button (click)="editMorada(morada)">
+          <ion-icon slot="start" name="create"></ion-icon>
+          Editar
+        </ion-button>
+
+        <ion-button (click)="removeMorada(morada.id || 0)">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Apagar
+        </ion-button>
+
       </ion-card>
       
     </ion-list>
   </div>
 
-  <ion-button expand="block" shape="round" (click)="clickManageMoradas()" >
+  <ion-button expand="block" shape="round" (click)="insertMorada()">
     Adicionar Nova Morada
   </ion-button>
 </ion-content>
