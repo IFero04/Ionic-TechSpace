@@ -22,4 +22,29 @@ ion-content {
             font-size: 30px;
         }
     }
+
+    .form {
+        margin-top: 2%;
+        .NIF, .address, .cod_postal, .city, .phone{
+            color: rgba(0, 0, 0, 0.4);
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-bottom: 5%;
+            ion-lable {
+                padding-bottom: 5%;
+            }
+            ion-input {
+                margin-top: 2%;
+                color: #000;
+            }
+        }
+        
+        ion-button {
+            padding: 0 5%;
+            width: 100%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            font-weight: 900;
+        }
+    }
 }

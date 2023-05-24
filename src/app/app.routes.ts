@@ -17,4 +17,8 @@ export const routes: Routes = [
     path: 'morada',
     loadComponent: () => import('./screens/morada/morada.page').then( m => m.MoradaPage)
   },
+  {
+    path: 'fav',
+    loadComponent: () => import('./screens/fav/fav.page').then( m => m.FavPage)
+  },
 ];

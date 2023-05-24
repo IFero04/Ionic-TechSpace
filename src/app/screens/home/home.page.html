@@ -2,13 +2,12 @@
   <!--- HEADER --->
   <div class="header">
     <h1>TechSpace</h1>
+
+    <!--- SEARCHBAR --->
+    <ion-searchbar class="custom" placeholder="Pesquisar" [(ngModel)]="searchTerm" (ionChange)="search()" ></ion-searchbar>
   </div>
 
-  <!--- SEARCHBAR --->
-  <app-searchbar></app-searchbar>
-
-  <ion-button (click)="click()" expand="block" fill="clear" shape="round">
-    Click me
-  </ion-button>
+  
+  
 
 </ion-content>

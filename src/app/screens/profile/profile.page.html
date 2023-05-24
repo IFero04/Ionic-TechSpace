@@ -1,7 +1,7 @@
 <ion-content *ngIf="!isLoadingUser">
   <h1 >Olá, {{user.name}}!</h1>
 
-  <button>
+  <button (click)="goTo('/tabs/cart')">
     <ion-icon slot="start" name="cart" color="primary"></ion-icon>
     Compras
   </button>
@@ -9,7 +9,7 @@
     <ion-icon slot="start" name="bicycle" color="primary"></ion-icon>
       Serviços
   </button>
-  <button>
+  <button (click)="goTo('/fav')">
     <ion-icon slot="start" name="heart" color="primary"></ion-icon>
     Favoritos
   </button>
@@ -26,7 +26,7 @@
   <ion-item button detail="true" (click)="clickDadosPessoais()">
       <p>Dados Pessoais</p>
   </ion-item>
-  <ion-item button detail="true" (click)="clickMoradas()">
+  <ion-item button detail="true" (click)="goTo('/morada')">
       <p>Gestão de Moradas</p>
   </ion-item>
 

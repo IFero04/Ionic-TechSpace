@@ -8,29 +8,60 @@
   <div class="moradas">
     <ion-list *ngIf="!isLoadingMoradas">
       <ion-card *ngFor="let morada of moradas">
-        {{morada.name}}
-        {{morada.NIF}}
-        {{morada.address}}
-        {{morada.cod_postal}}
-        {{morada.city}}
-        {{morada.phone}}
+        <ion-grid>
+          <ion-row class="name">
+            <ion-col>
+              <p><strong>Nome:</strong> {{morada.name}}</p>
+            </ion-col>
+          </ion-row>
 
-        <ion-button (click)="editMorada(morada)">
-          <ion-icon slot="start" name="create"></ion-icon>
-          Editar
-        </ion-button>
+          <ion-row>
+            <ion-col>
+              <p><strong>NIF:</strong> {{morada.NIF}}</p>
+            </ion-col>
+          </ion-row>
 
-        <ion-button (click)="removeMorada(morada.id || 0)">
-          <ion-icon slot="start" name="trash"></ion-icon>
-          Apagar
-        </ion-button>
+          <ion-row>
+            <ion-col>
+              <p><strong>Cidade:</strong> {{morada.city}}</p>
+            </ion-col>
+          </ion-row>
+        
+          <ion-row>
+            <ion-col>
+              <p><strong>Morada:</strong> {{morada.address}} | {{morada.cod_postal}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p><strong>Tel:</strong> {{morada.phone}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button class="editar" (click)="editMorada(morada)" fill="clear">
+                <ion-icon slot="start" name="create"></ion-icon>
+                Editar
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+              <ion-button class="apagar" (click)="removeMorada(morada.id || 0)" fill="clear">
+                <ion-icon slot="start" name="trash"></ion-icon>
+                Apagar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
 
       </ion-card>
       
     </ion-list>
   </div>
 
-  <ion-button expand="block" shape="round" (click)="insertMorada()">
+  <ion-button color="medium" expand="block" shape="round" (click)="insertMorada()">
     Adicionar Nova Morada
   </ion-button>
 </ion-content>

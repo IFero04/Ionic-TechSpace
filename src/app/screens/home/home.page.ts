@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { SearchbarComponent } from '../../components/searchbar/searchbar.component';
 import { Category } from 'src/app/models/category.model';
 import { Router } from '@angular/router';
 import { GestaoMoradasModalComponent } from 'src/app/components/gestao-moradas-modal/gestao-moradas-modal.component';
+import { time } from 'console';
 
 
 @Component({
@@ -14,48 +14,21 @@ import { GestaoMoradasModalComponent } from 'src/app/components/gestao-moradas-m
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonicModule, ExploreContainerComponent, FormsModule, SearchbarComponent],
+  imports: [IonicModule, ExploreContainerComponent, FormsModule],
 })
-export class HomePage implements OnInit{
-  categories: Category[] = [];
+export class HomePage {
+  searchTerm;
 
-  constructor(private router: Router, private modalCtrl: ModalController) { }
-
-  async ngOnInit() {
-    this.getCategories();
+  constructor(private router: Router, private modalCtrl: ModalController) { 
+    this.searchTerm = '';
   }
 
-  click() {
-    this.router.navigate(['/morada'])
-  }
-
-  getCategories() {
-    this.categories = [
-      {
-        id: 1,
-        label: 'As minhas compras',
-        icon: 'cart',
-        active: true,
-      },
-      {
-        id: 2,
-        label: 'Favoritos',
-        icon: 'heart',
-        active: false,
-      },
-      {
-        id: 3,
-        label: 'Mensagens',
-        icon: 'chatbubbles',
-        active: false,
-      },
-      {
-        id: 4,
-        label: 'Cupöes',
-        icon: 'cup',
-        active: false,
-      },
-    ];
+  search() {
+    if (this.searchTerm.trim() !== ''){
+      const send = this.searchTerm
+      this.searchTerm = '';
+      this.router.navigate(['/tabs/search'], {queryParams: {searchTerm: send}})
+    }
   }
 
 }

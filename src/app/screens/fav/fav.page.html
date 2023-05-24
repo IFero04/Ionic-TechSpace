@@ -1,11 +1,13 @@
 <ion-content>
   <div class="header">
-    <h1>Carrinho de Compras</h1>
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Produtos Favoritos</h1>
   </div>
 
   <div class="list" *ngIf="!isLoadingCart">
     <ion-list *ngFor="let product of cart">
-      <ion-card *ngIf="product.cart">
+      <ion-card *ngIf="product.fav">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -41,14 +43,5 @@
       </ion-card>
     </ion-list>
   </div>
-  
-
-  <ion-item slot="fixed">
-    <h1>Total: {{total | currency:'EUR':'symbol-narrow':'1.2-2' }}</h1>
-
-    <ion-button (click)="onClick()" expand="block" shape="round" >
-      Finalizar Compra
-    </ion-button>
-  </ion-item>
 
 </ion-content>

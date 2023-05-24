@@ -5,44 +5,41 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: 'cart.page.html',
-  styleUrls: ['cart.page.scss'],
+  selector: 'app-fav',
+  templateUrl: './fav.page.html',
+  styleUrls: ['./fav.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, ExploreContainerComponent],
 })
-export class CartPage {
+export class FavPage {
+
   isLoadingCart: boolean;
   cart: Product[];
   cartSubscription: Subscription;
-  total: number;
-  totalSubscription: Subscription;
 
-
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.cart = this.cartService.getProductsCart();
-    this.total = this.cartService.total;
     this.isLoadingCart = true;
     this.cartSubscription = this.cartService.cartSubject.subscribe((cart: Product[]) => {
       this.cart = cart;
       this.isLoadingCart = false;
     });
-    this.totalSubscription = this.cartService.totalSubject.subscribe((total: number) => {
-      this.total = total;
-    });
   }
 
   removeProduct(id: number) {
-    this.cartService.removeCart(id);
+    this.cartService.removeFav(id);
   }
 
   isStringTooLong(text: string, maxLength: number): boolean {
-  return text.length > maxLength;
-}
-
-  onClick() {
-
+    return text.length > maxLength;
   }
+
+  goBack() {
+    this.router.navigate(['/tabs/profile'])
+  }
+
 }

@@ -44,8 +44,8 @@ export class ProfilePage implements OnDestroy{
     await modal.present();
   }
 
-  clickMoradas() {
-    this.router.navigate(['/morada'])
+  goTo(page: string) {
+    this.router.navigate([page]);
   }
 
   ngOnDestroy() {

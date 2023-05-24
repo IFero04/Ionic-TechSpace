@@ -25,18 +25,38 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-ion-searchbar {
-    .searchbar-input-container {
-        input {
-            padding-top: 14px !important;
-            padding-bottom: 12px !important;
-            font-size: 18px !important;
-        }
+ion-searchbar.custom {
+    --box-shadow: none;
+    --background: #f3f3f3;
+    --border-radius: 1.2rem;
+    --placeholder-font-weight: 600;
+    --placeholder-opacity: 0.2;
 
-        .searchbar-search-icon {
-            top: 15px !important;
-            width: 25px;
-            height: 25px;
+    padding: 0%;
+    margin-bottom: 2rem;
+
+
+    ion-searchbar.md.custom {
+        .searchbar-input-container {
+            input {
+                padding-top: 14px !important;
+                padding-bottom: 12px !important;
+                font-size: 18px !important;
+            }
+    
+            .searchbar-search-icon {
+                top: 15px !important;
+                width: 25px;
+                height: 25px;
+            }
         }
     }
 }
+
+strong {
+    font-weight: bold;
+}
+span {
+    cursor: pointer;
+}
+
