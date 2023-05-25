@@ -100,13 +100,9 @@ export class SearchPage implements OnInit{
       this.filter = data;
 
       if (this.searchTerm === '') {
-        console.log(this.filteredProducts);
         this.filterByPriceRange(this.products);
-        console.log(this.filteredProducts);
         this.filterByBrand(this.filteredProducts);
-        console.log(this.filteredProducts);
         this.filterByRGB(this.filteredProducts);
-        console.log(this.filteredProducts);
       }
       else {
         this.filterByPriceRange(this.filteredProducts);
@@ -131,9 +127,7 @@ export class SearchPage implements OnInit{
   }
 
   filterByRGB(toFilter: Product[]) {
-    console.log(this.filter.RGB);
-    if (this.filter.RGB || !this.filter.RGB) {
-      console.log('Entrei');
+    if (this.filter.RGB || this.filter.RGB == false) {
       this.filteredProducts = toFilter.filter((product) => {
         return product.RGB === this.filter.RGB;
       });
