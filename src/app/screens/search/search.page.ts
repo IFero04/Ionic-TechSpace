@@ -26,14 +26,14 @@ export class SearchPage implements OnInit{
       upper: number,
     },
     brands: string[],
-    RGB: boolean
+    RGB: boolean | undefined
   };
 
   constructor(private cartService: CartService, private route: ActivatedRoute, private router: Router, private modalCtrl: ModalController) {
     this.products = [];
     this.filteredProducts = [];
     this.searchTerm= '';
-    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: false };
+    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: undefined };
   }
 
   ngOnInit() {
@@ -131,11 +131,13 @@ export class SearchPage implements OnInit{
   }
 
   filterByRGB(toFilter: Product[]) {
-    if (this.filter.RGB) {
+    console.log(this.filter.RGB);
+    if (this.filter.RGB || !this.filter.RGB) {
+      console.log('Entrei');
       this.filteredProducts = toFilter.filter((product) => {
-        return product.RGB;
+        return product.RGB === this.filter.RGB;
       });
-    }
+    } 
   }
 
   clickCart(product: Product) {

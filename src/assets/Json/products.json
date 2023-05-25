@@ -15,7 +15,7 @@
         "Modelo": "BlackWidow V3",
         "Categoria": "Teclado",
         "image": "assets/imgP/Razer BlackWidow V3 Rosa.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Membrana - Inglês - Rosa",
         "Preco": 159.99
     },
@@ -25,7 +25,7 @@
         "Modelo": "Deathstalker V2 Pro",
         "Categoria": "Teclado",
         "image": "assets/imgP/Razer DeathStalker V2 Pro Branco.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Ótico - Inglês - Branco",
         "Preco": 220.99
     },
@@ -35,7 +35,7 @@
         "Modelo": "Basilisk V3 Pro",
         "Categoria": "Rato",
         "image": "assets/imgP/Razer Basilisk V3 Pro Branco.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "RGB Wireless - Bluethooth - Branco",
         "Preco": 179.99
     },
@@ -45,7 +45,7 @@
         "Modelo": "Basilisk V3 Pro",
         "Categoria": "Rato",
         "image": "assets/imgP/Razer Basilisk V3 Pro Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "RGB Wireless - Bluethooth - Preto",
         "Preco": 179.99
     },
@@ -55,7 +55,7 @@
         "Modelo": "Basilisk V3",
         "Categoria": "Rato",
         "image": "assets/imgP/Razer Basilisk V3 Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "RGB - Preto",
         "Preco": 59.99
     },
@@ -65,7 +65,7 @@
         "Modelo": "Pro",
         "Categoria": "Rato",
         "image": "assets/imgP/Logitech Pro Preto.png",
-        "RBG": false,
+        "RGB": false,
         "Descricao": "Wireless - Preto",
         "Preco": 99.99
     },
@@ -75,7 +75,7 @@
         "Modelo": "G203 Lightsync",
         "Categoria": "Rato",
         "image": "assets/imgP/Logitech G203 Lightsync Lilás.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Ótico - RGB -Lilás",
         "Preco": 39.99
     },
@@ -85,7 +85,7 @@
         "Modelo": "Omen Vector",
         "Categoria": "Rato",
         "image": "assets/imgP/HP Omen Vector Preto.png",
-        "RBG": false,
+        "RGB": false,
         "Descricao": "Preto",
         "Preco": 35.00
     },
@@ -95,7 +95,7 @@
         "Modelo": "Aerox 3 2022",
         "Categoria": "Rato",
         "image": "assets/imgP/SteelSeries Aerox 3 2022 Branco.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Wireless - Branco",
         "Preco": 79.99
     },
@@ -105,7 +105,7 @@
         "Modelo": "Pulsefire Haste",
         "Categoria": "Rato",
         "image": "assets/imgP/HyperX Pulsefire Haste Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Preto",
         "Preco": 39.99
     },
@@ -115,7 +115,7 @@
         "Modelo": "ROG Gladius III",
         "Categoria": "Rato",
         "image": "assets/imgP/Asus ROG Gladius III Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Wireless - Preto",
         "Preco": 109.99
     },
@@ -125,7 +125,7 @@
         "Modelo": "G502 X Plus Lightspeed",
         "Categoria": "Rato",
         "image": "assets/imgP/Logitech G502 X Plus Lightspped Branco.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Wireless - Branco",
         "Preco": 169.99
     },
@@ -135,7 +135,7 @@
         "Modelo": "Pavillion 200",
         "Categoria": "Rato",
         "image": "assets/imgP/HP Pavillion 200 Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Preto",
         "Preco": 20.99
     },
@@ -145,7 +145,7 @@
         "Modelo": "Alloy Origins 60",
         "Categoria": "Teclado",
         "image": "assets/imgP/HyperX Alloy Origins 60 Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Inglês - Preto",
         "Preco": 99.99
     }
@@ -156,7 +156,7 @@
         "Modelo": "Apex Pro Tkl",
         "Categoria": "Teclado",
         "image": "assets/imgP/SteelSeries Apex Pro Tkl Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Inglês - Preto",
         "Preco": 185.99
     },
@@ -166,7 +166,7 @@
         "Modelo": "G413 Prodigy",
         "Categoria": "Teclado",
         "image": "assets/imgP/Logitech G413 Prodigy Preto.png",
-        "RBG": false,
+        "RGB": false,
         "Descricao": "Mecânico - Português - Preto",
         "Preco": 75.99
     }
@@ -177,7 +177,7 @@
         "Modelo": "Tuf K1",
         "Categoria": "Teclado",
         "image": "assets/imgP/Asus Tuf K1 Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Membrana - Português - Preto",
         "Preco": 59.99
     },
@@ -187,7 +187,7 @@
         "Modelo": "G512 Carbon",
         "Categoria": "Teclado",
         "image": "assets/imgP/Logitech G512 Carbon Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Português - Preto",
         "Preco": 119.99
     },
@@ -197,7 +197,7 @@
         "Modelo": "G715",
         "Categoria": "Teclado",
         "image": "assets/imgP/Logitech G715 Branco.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Inglês - Branco",
         "Preco": 169.99
     },
@@ -207,7 +207,7 @@
         "Modelo": "Pavillion 550",
         "Categoria": "Teclado",
         "image": "assets/imgP/HP Pavillion 550 Preto.png",
-        "RBG": false,
+        "RGB": false,
         "Descricao": "Mecânico - Português - Preto",
         "Preco": 57.99
     },
@@ -217,7 +217,7 @@
         "Modelo": "K65 RGB Mini",
         "Categoria": "Teclado",
         "image": "assets/imgP/Corsair K65 RGB Mini Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "USB - Mecânico - Português - Preto",
         "Preco": 139.99
     },
@@ -227,7 +227,7 @@
         "Modelo": "G915 Lightspeed",
         "Categoria": "Teclado",
         "image": "assets/imgP/Logitech G915 Lightspeed Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Wireless - Preto",
         "Preco": 209.99
     }
@@ -238,7 +238,7 @@
         "Modelo": "K60 RGB Pro",
         "Categoria": "Teclado",
         "image": "assets/imgP/Corsair K60 RGB Pro Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Português - Preto",
         "Preco": 115.99
     }
@@ -249,7 +249,7 @@
         "Modelo": "Rog Strix Scope RX Deluxe",
         "Categoria": "Teclado",
         "image": "assets/imgP/Asus ROG Strix Scope RX Deluxe Preto.png",
-        "RBG": true,
+        "RGB": true,
         "Descricao": "Mecânico - Português - Preto",
         "Preco": 169.99
     }

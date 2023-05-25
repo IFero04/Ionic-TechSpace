@@ -36,7 +36,7 @@
   <div class="RGB">
     <h1>RGB</h1>
  
-    <ion-radio-group aria-label="Option Label" [(ngModel)]="filter.RGB">
+    <ion-radio-group [allowEmptySelection]="true" aria-label="Option Label" [(ngModel)]="filter.RGB">
       <ion-radio [value]="true">Sim</ion-radio>
       <ion-radio [value]="false">Não</ion-radio>
     </ion-radio-group>

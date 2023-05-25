@@ -19,11 +19,11 @@ export class FilterComponent {
       upper: number,
     },
     brands: string[],
-    RGB: boolean
+    RGB: boolean | undefined
   }; 
 
   constructor(private modalController: ModalController) { 
-    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: false };
+    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: undefined };
   }
 
   ngOnInit() {}
