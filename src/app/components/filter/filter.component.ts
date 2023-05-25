@@ -23,7 +23,7 @@ export class FilterComponent {
   }; 
 
   constructor(private modalController: ModalController) { 
-    this.filter = {price: { lower: 0, upper: 1000 }, brands: [], RGB: false };
+    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: false };
   }
 
   ngOnInit() {}
@@ -37,6 +37,11 @@ export class FilterComponent {
 
   rangeChange(ev: any) {
     this.filter.price = ev.detail.value;
+  }
+  
+  clearFilters() {
+    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: false };
+    this.applyFilters();
   }
 
   applyFilters() {
