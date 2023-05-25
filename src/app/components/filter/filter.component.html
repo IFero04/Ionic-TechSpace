@@ -1,0 +1,55 @@
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Filtrar</h1>
+  </div>
+
+  <div class="preco">
+    <h1>Preço</h1>
+
+    <ion-range
+      min="1" max="1000"
+      [value]="{ lower: 1, upper: 1000 }"
+      dualKnobs="true" step="1"
+      [pin]="true" [pinFormatter]="pinFormatter"
+      (ionChange)="rangeChange($event)"
+      labelPlacement="end">
+      <div slot="label">{{filter.price.lower}} até {{filter.price.upper}}</div>
+    </ion-range>
+  </div>
+
+  <div class="marca">
+    <h1>Marca</h1>
+
+    <ion-select placeholder="Selecione as marcas" [multiple]="true" [(ngModel)]="filter.brands">
+      <ion-select-option value="Razer">Razer</ion-select-option>
+      <ion-select-option value="Logitech">Logitech</ion-select-option>
+      <ion-select-option value="HP">HP</ion-select-option>
+      <ion-select-option value="SteelSeries">SteelSeries</ion-select-option>
+      <ion-select-option value="HyperX">HyperX</ion-select-option>
+      <ion-select-option value="Asus">Asus</ion-select-option>
+      <ion-select-option value="Corsair">Corsair</ion-select-option>
+    </ion-select>
+  </div>
+
+  <div class="RGB">
+    <h1>RGB</h1>
+ 
+    <ion-radio-group aria-label="Option Label" [(ngModel)]="filter.RGB">
+      <ion-radio [value]="true">Sim</ion-radio>
+      <ion-radio [value]="false">Não</ion-radio>
+    </ion-radio-group>
+  </div>
+
+  <ion-item slot="fixed">
+    <button (click)="applyFilters()">
+      Eliminar Todos
+    </button>
+
+    <button (click)="applyFilters()">
+      Filtrar
+    </button>
+  </ion-item>
+
+  </ion-content>

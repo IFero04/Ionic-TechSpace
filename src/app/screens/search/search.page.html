@@ -3,7 +3,11 @@
     <h1>Produtos</h1>
 
     <!--- SEARCHBAR --->
-    <ion-searchbar class="custom" placeholder="Pesquisar" [(ngModel)]="searchTerm" (ionChange)="search()" ></ion-searchbar>
+    <ion-searchbar class="custom" placeholder="Pesquisar" [(ngModel)]="searchTerm" (ionChange)="search()" (ionClear)="clearSearch()"></ion-searchbar>
+
+    <ion-button (click)="filterProducts()" expand="block" shape="round">
+      Click me
+    </ion-button>
   </div>
   
   <div class="list">

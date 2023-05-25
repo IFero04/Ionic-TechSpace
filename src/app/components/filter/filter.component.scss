@@ -1,0 +1,91 @@
+ion-content {
+    .header {
+        background: #80AECB;
+        color: #fff;
+        padding-bottom: 10%;
+        padding-top: 10%;
+
+        display: flex;
+        align-items: center;
+        
+
+        ion-icon {
+            margin-left: 15px;
+            margin-right: 24%;
+            font-size: 35px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Inter';
+            font-weight: bold;
+            font-size: 30px;
+        }
+    }
+    
+    .preco, .marca, .RGB {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            font-family: 'Inter';
+            color: #80AECB;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        ion-radio-group {
+            display: flex;
+            justify-content: center;
+        }
+          
+        ion-radio {
+            margin: 0 10%;
+        }
+    }
+
+    ion-item[slot='fixed'] {
+        --background: #80AECB;
+        bottom: 0;
+        width: 100%;
+ 
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5%;
+            margin-top: 5%;
+            gap: 3%;
+
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            width: 150px;
+            height: 32px;
+            left: 17.5px;
+            top: 15px;
+
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Inter';
+            color: #80AECB;
+            &:hover {
+                background-color: lightgray;
+            }
+            &:active {
+                background-color: gray;
+                color: white;
+            }
+        }
+
+        button + button {
+            margin-left: 7%;
+        }
+    }
+}
