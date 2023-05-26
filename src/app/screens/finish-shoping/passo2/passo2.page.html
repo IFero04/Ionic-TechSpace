@@ -1,0 +1,144 @@
+<ion-content class="Casa" *ngIf = "order.local == 'Casa'">
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Opções de Entrega</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda2.png" alt="Passo2">
+
+  <ion-radio-group aria-label="OpEntrega" [(ngModel)]="radio">
+    <ion-radio value="Standard" labelPlacement="end">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-icon name="bus"></ion-icon>
+              <p>Standard</p>
+            </ion-col>
+            <ion-col class="price">
+              2,90€
+            </ion-col>
+          </ion-row>
+            
+          <ion-row>
+            <ion-col>
+              Entrega em 2 a 3 dias.
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Premium" labelPlacement="end">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-icon name="car-sport"></ion-icon>
+              <p>Premium</p>
+            </ion-col>
+            <ion-col class="price">
+              4,90€
+            </ion-col>
+          </ion-row>
+            
+          <ion-row>
+            <ion-col>
+              Entrega em 24 hora.
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Express" labelPlacement="end">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-icon name="rocket"></ion-icon>
+              <p>Express</p>
+            </ion-col>
+            <ion-col class="price">
+              9,90€
+            </ion-col>
+          </ion-row>
+            
+          <ion-row>
+            <ion-col>
+              Entrega em até 1 hora.
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-radio>
+  </ion-radio-group>
+
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()">
+      Continuar
+    </button>
+  </ion-item>
+
+</ion-content>
+
+
+
+<ion-content class="Loja" *ngIf = "order.local == 'Loja'">
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Opções de Recolha</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda2.png" alt="Passo2">
+
+  <ion-radio-group aria-label="OpRecolha" [(ngModel)]="radio">
+    <ion-radio value="Braga" labelPlacement="end">
+      <ion-item>
+        <p>Braga</p>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Porto" labelPlacement="end">
+      <ion-item>
+        <p>Porto</p>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Aveiro" labelPlacement="end">
+      <ion-item>
+        <p>Aveiro</p>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Amarante" labelPlacement="end">
+      <ion-item>
+        <p>Amarante</p>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="Lisboa" labelPlacement="end">
+      <ion-item>
+        <p>Lisboa</p>
+      </ion-item>
+    </ion-radio>
+  </ion-radio-group>
+
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()">
+      Continuar
+    </button>
+  </ion-item>
+
+</ion-content>
+

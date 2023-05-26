@@ -1,0 +1,131 @@
+ion-content {
+    .header {
+        background: #80AECB;
+        color: #fff;
+        padding-bottom: 10%;
+        padding-top: 10%;
+
+        display: flex;
+        align-items: center;
+        
+
+        ion-icon {
+            margin-left: 15px;
+            margin-right: 2%;
+            font-size: 35px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Inter';
+            font-weight: bold;
+            font-size: 30px;
+        }
+    }
+
+    img {
+        margin: 5% auto 0;
+        display: block;
+    }
+
+    ion-radio-group{
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        flex-direction: column;
+
+        ion-radio {
+            margin-top: 15%;
+            margin-bottom: 5%;
+
+            ion-item {
+                --background: rgba(169, 203, 225, 0.4);
+                --border-radius: 10px;
+                --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                padding: 8px;
+                width: 280px;
+                
+                ion-icon {
+                    margin-right: 15px;
+                    font-size: 24px;
+                    flex-shrink: 0; 
+                }
+        
+                p {
+                    font-weight: bold;
+                    margin-right: 40px;
+                }
+            }
+        }
+
+        ion-radio::part(container) {
+            width: 30px;
+            height: 30px;
+            
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+            
+        ion-radio::part(mark) {
+            background: none;
+            transition: none;
+            transform: none;
+            border-radius: 0;
+        }
+            
+        ion-radio.radio-checked::part(container) {
+            background: #80AECB;
+            border-color: transparent;
+        }
+            
+        ion-radio.radio-checked::part(mark) {
+            width: 6px;
+            height: 10px;
+            
+            border-width: 0px 2px 2px 0px;
+            border-style: solid;
+            border-color: #fff;
+            
+            transform: rotate(45deg);
+        }
+    }
+
+    ion-item[slot='fixed'] {
+        --background: #80AECB;
+        bottom: 0;
+        width: 100%;
+ 
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5%;
+            margin-top: 5%;
+            gap: 3%;
+
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            width: 150px;
+            height: 32px;
+            left: 17.5px;
+            top: 15px;
+
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Inter';
+            color: #80AECB;
+            &:hover {
+                background-color: lightgray;
+            }
+            &:active {
+                background-color: gray;
+                color: white;
+            }
+        }
+
+        button + button {
+            margin-left: 7%;
+        }
+    }
+}

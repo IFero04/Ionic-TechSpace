@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Local de Entrega</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda1.png" alt="Passo1">
+
+  <ion-radio-group aria-label="Entrega" [(ngModel)]="radio">
+    <ion-radio value="Loja" labelPlacement="end">
+      <ion-item>
+        <ion-icon name="desktop"></ion-icon>
+        <p>Loja TechSpace</p>
+      </ion-item>
+    </ion-radio>
+    
+    <ion-radio value="Casa" labelPlacement="end">
+      <ion-item>
+        <ion-icon name="home"></ion-icon>
+        <p>Entrega em Casa</p>
+      </ion-item>
+    </ion-radio>
+  </ion-radio-group>
+
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()">
+      Continuar
+    </button>
+  </ion-item>
+
+
+</ion-content>

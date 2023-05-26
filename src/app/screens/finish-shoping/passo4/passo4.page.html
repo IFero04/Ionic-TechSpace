@@ -1,0 +1,44 @@
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1>Método de Pagamento</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda4.png" alt="Passo4">
+
+  <ion-radio-group aria-label="Entrega" [(ngModel)]="radio">
+    <ion-radio value="Cartão de Crédito" labelPlacement="end">
+      <ion-item>
+        <ion-icon name="card"></ion-icon>
+        <p>Cartão de Crédito</p>
+      </ion-item>
+    </ion-radio>
+    
+    <ion-radio value="Referêrencia Multibanco" labelPlacement="end">
+      <ion-item>
+        <ion-icon name="phone-portrait"></ion-icon>
+        <p>Referêrencia Multibanco</p>
+      </ion-item>
+    </ion-radio>
+
+    <ion-radio value="MB Way" labelPlacement="end">
+      <ion-item>
+        <ion-icon name="qr-code"></ion-icon>
+        <p>MB Way</p>
+      </ion-item>
+    </ion-radio>
+  </ion-radio-group>
+
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()">
+      Continuar
+    </button>
+  </ion-item>
+
+
+</ion-content>

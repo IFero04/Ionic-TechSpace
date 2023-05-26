@@ -5,6 +5,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,7 @@ export class CartPage {
   totalSubscription: Subscription;
 
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.cart = this.cartService.getProductsCart();
     this.total = this.cartService.total;
     this.isLoadingCart = true;
@@ -42,7 +43,9 @@ export class CartPage {
   return text.length > maxLength;
 }
 
-  onClick() {
-
+  finishOrder() {
+    if(this.total > 0) {
+      this.router.navigate(['/passo1']);
+    }
   }
 }

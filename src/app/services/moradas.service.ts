@@ -25,6 +25,7 @@ export class MoradasService {
     this.userSubscription = this.userService.userSubject.subscribe((user: User) => {
       this.user = user;
     });
+    this.user.id = 1684599853044;
     this.moradas = [];
     this.moradasSubject = new BehaviorSubject<Morada[]>(this.moradas);
     this.init();

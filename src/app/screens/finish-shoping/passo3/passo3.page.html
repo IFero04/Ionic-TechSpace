@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="header">
+    <ion-icon *ngIf="order.local == 'Casa'" class="Casa" slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+    <ion-icon *ngIf="order.local == 'Loja'" class="Loja" slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
+
+    <h1 *ngIf="order.local == 'Casa'">Selecionar Morada</h1>
+    <h1 *ngIf="order.local == 'Loja'">Selecionar Faturação</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda3.png" alt="Passo3">
+
+  <div class="moradas">
+    <ion-list *ngIf="!isLoadingMoradas">
+      <div *ngFor="let morada of moradas" class="morada-container">
+        <ion-radio-group aria-label="Morada" [(ngModel)]="radio">
+          <ion-radio [value]="morada.id"></ion-radio>
+        </ion-radio-group>
+
+        <ion-card class="morada-card">
+          <ion-grid>
+            <ion-row class="name">
+              <ion-col>
+                <p><strong>Nome:</strong> {{morada.name}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>NIF:</strong> {{morada.NIF}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>Cidade:</strong> {{morada.city}}</p>
+              </ion-col>
+            </ion-row>
+          
+            <ion-row>
+              <ion-col>
+                <p><strong>Morada:</strong> {{morada.address}} | {{morada.cod_postal}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>Tel:</strong> {{morada.phone}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+    </ion-list>
+  </div>
+
+  <p><span (click)="addMorada()">Adicionar Morada</span></p>
+
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()">
+      Continuar
+    </button>
+  </ion-item>
+</ion-content>
