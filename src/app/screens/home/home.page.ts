@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, ModalController, ViewWillEnter } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { Category } from 'src/app/models/category.model';
 import { Router } from '@angular/router';
-import { GestaoMoradasModalComponent } from 'src/app/components/gestao-moradas-modal/gestao-moradas-modal.component';
-import { time } from 'console';
+import { ScreenOrientation, OrientationLockOptions } from '@capacitor/screen-orientation';
 
 
 @Component({
@@ -16,11 +14,16 @@ import { time } from 'console';
   standalone: true,
   imports: [IonicModule, ExploreContainerComponent, FormsModule],
 })
-export class HomePage {
+export class HomePage implements ViewWillEnter{
   searchTerm;
 
   constructor(private router: Router, private userService: UserService) { 
     this.searchTerm = '';
+  }
+
+  ionViewWillEnter(): void {
+    const options: OrientationLockOptions = { orientation: 'portrait' };
+    ScreenOrientation.lock(options);
   }
 
   search() {

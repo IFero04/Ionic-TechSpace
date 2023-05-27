@@ -1,7 +1,5 @@
 # Ionic-TechSpace
 
- Tela Inicial.
-
 ## Extra
 
 Alterar ícone da app e respetivo Splash Screen;

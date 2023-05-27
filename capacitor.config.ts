@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Ionic-TechSpace',
+  appId: 'pt.space.tech',
+  appName: 'TechSpace',
   webDir: 'www',
   server: {
     androidScheme: 'https'

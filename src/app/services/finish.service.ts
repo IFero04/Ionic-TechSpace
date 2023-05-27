@@ -13,10 +13,6 @@ export class FinishService {
 
   constructor(private cartService: CartService) { 
     this.order = {} as Order;
-    this.order.idMorada = 1684870944874;
-    this.order.local = 'Casa';
-    this.order.opEntrega = 'Express';
-    this.order.pagamento = 'MB Way';
     this.orderSubject = new BehaviorSubject<Order>(this.order);
   }
 
