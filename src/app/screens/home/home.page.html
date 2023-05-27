@@ -7,7 +7,43 @@
     <ion-searchbar class="custom" placeholder="Pesquisar" [(ngModel)]="searchTerm" (ionChange)="search()" ></ion-searchbar>
   </div>
 
+  <div class="buttons">
+    <ion-grid>
+      <ion-row justify-content-center align-items-center>
+        <ion-col>
+          <ion-button (click)="goTo('/tabs/cart')">
+            <ion-icon slot="icon-only" name="cart"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="goTo('/fav')">
+            <ion-icon slot="icon-only" name="heart"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button>
+            <ion-icon slot="icon-only" name="cut"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center align-items-center>
+        <ion-col>
+          <p>Carrinho</p>
+        </ion-col>
+        <ion-col>
+          <p>Favoritos</p>
+        </ion-col>
+        <ion-col>
+          <p>Cartão</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   
-  
+  <div class="separador">
+    <h1>Promoção da Semana</h1>
+  </div>
+
+  <img src="assets/Promotion.png" alt=""/>
 
 </ion-content>

@@ -31,4 +31,11 @@ export class HomePage {
     }
   }
 
+  goTo(page: string) {
+    if (this.userService.isLoggedIn) {
+      this.router.navigate([page]);
+    } else {
+      this.router.navigate(['/register']);
+    }
+  }
 }

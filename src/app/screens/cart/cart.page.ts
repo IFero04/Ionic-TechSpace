@@ -6,6 +6,7 @@ import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +23,7 @@ export class CartPage {
   totalSubscription: Subscription;
 
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(private cartService: CartService, private router: Router, private userService: UserService) {
     this.cart = this.cartService.getProductsCart();
     this.total = this.cartService.total;
     this.isLoadingCart = true;
@@ -44,8 +45,11 @@ export class CartPage {
   }
 
   finishOrder() {
-    if(this.total > 0) {
-      this.router.navigate(['/passo1']);
+    if (this.userService.isLoggedIn) {
+      if(this.total > 0) {
+        this.router.navigate(['/passo1']);
+      }
     }
+    this.router.navigate(['/register']);
   }
 }
