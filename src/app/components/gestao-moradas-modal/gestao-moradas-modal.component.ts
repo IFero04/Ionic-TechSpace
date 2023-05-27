@@ -29,12 +29,12 @@ export class GestaoMoradasModalComponent {
     this.button = '';
     this.morada = null;
 
-    this.moradaForm =  new FormGroup({
-      NIF: new FormControl('', [Validators.required]),
+    this.moradaForm = new FormGroup({
+      NIF: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
       address: new FormControl('', [Validators.required]),
-      cod_postal: new FormControl('', [Validators.required]),
+      cod_postal: new FormControl('', [Validators.required, Validators.pattern(/^\d{4}-\d{3}$/)]),
       city: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required])
+      phone: new FormControl('', [Validators.required, Validators.pattern(/^9\d{8}$/)])
     });
   }
 

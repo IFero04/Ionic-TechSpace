@@ -15,6 +15,10 @@
         <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['NIF'].errors?.['required']">
           NIF é de preenchimento obrigatório
         </ion-text>
+
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['NIF'].errors?.['maxLength']">
+          NIF contém 9 números.
+        </ion-text>
       </div>
 
       <div class="address">
@@ -22,7 +26,7 @@
         <ion-input [ngModel]="morada?.address ?? ''" type="text" fill="outline" formControlName="address" required></ion-input>
 
         <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['address'].errors?.['required']">
-          Address é de preenchimento obrigatório
+          Morada é de preenchimento obrigatório.
         </ion-text>
       </div>
 
@@ -33,6 +37,9 @@
         <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['cod_postal'].errors?.['required']">
           Codigo Postal é de preenchimento obrigatório
         </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['cod_postal'].errors?.['pattern']">
+          Codigo Postal invalido.
+        </ion-text>
       </div>
 
       <div class="city">
@@ -40,7 +47,7 @@
         <ion-input [ngModel]="morada?.city ?? ''" type="text" fill="outline" formControlName="city" required></ion-input>
 
         <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['city'].errors?.['required']">
-          Cidade é de preenchimento obrigatório
+          Cidade é de preenchimento obrigatório.
         </ion-text>
       </div>
 
@@ -49,7 +56,10 @@
         <ion-input [ngModel]="morada?.phone ?? ''" type="text" fill="outline" formControlName="phone" required></ion-input>
 
         <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['phone'].errors?.['required']">
-          Telefone é de preenchimento obrigatório
+          Telefone é de preenchimento obrigatório.
+        </ion-text>
+        <ion-text class="ion-padding" color="danger" *ngIf="clicked && moradaForm.controls['phone'].errors?.['pattern']">
+          Telefone invalido.
         </ion-text>
       </div>
 

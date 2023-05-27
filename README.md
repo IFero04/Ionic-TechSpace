@@ -1,10 +1,6 @@
 # Ionic-TechSpace
 
-Forms Para Morada.
-
-Botão Filtrar.
-
-Tela Inicial.
+ Tela Inicial.
 
 ## Extra
 
