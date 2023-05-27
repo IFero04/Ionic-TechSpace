@@ -49,7 +49,8 @@ export class CartPage {
       if(this.total > 0) {
         this.router.navigate(['/passo1']);
       }
+    } else {
+      this.router.navigate(['/register']);
     }
-    this.router.navigate(['/register']);
   }
 }
