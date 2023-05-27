@@ -62,29 +62,50 @@ export class SearchPage implements OnInit{
   }
 
   search() {
-    const searchTerms = this.searchTerm.toLowerCase().trim().split(' ');
-    this.filteredProducts = this.products.filter((product) => {
-      const marca = product.Marca.toLowerCase().trim();
-      const modelo = product.Modelo.toLowerCase().trim();
-      const descricao = product.Descricao.toLowerCase().trim();
-      const categoria = product.Categoria.toLowerCase().trim();
-      return searchTerms.every((term) => {
-        return (
-          marca.includes(term) ||
-          modelo.includes(term) ||
-          descricao.includes(term) ||
-          categoria.includes(term)
-        );
+    if (this.filter.price.lower == 1 && this.filter.price.upper == 1000 && this.filter.brands.length == 0 && this.filter.RGB == undefined) {
+      const searchTerms = this.searchTerm.toLowerCase().trim().split(' ');
+      this.filteredProducts = this.products.filter((product) => {
+        const marca = product.Marca.toLowerCase().trim();
+        const modelo = product.Modelo.toLowerCase().trim();
+        const descricao = product.Descricao.toLowerCase().trim();
+        const categoria = product.Categoria.toLowerCase().trim();
+        return searchTerms.every((term) => {
+          return (
+            marca.includes(term) ||
+            modelo.includes(term) ||
+            descricao.includes(term) ||
+            categoria.includes(term)
+          );
+        });
       });
-    });
+    } else {
+      const searchTerms = this.searchTerm.toLowerCase().trim().split(' ');
+      this.filteredProducts = this.filteredProducts.filter((product) => {
+        const marca = product.Marca.toLowerCase().trim();
+        const modelo = product.Modelo.toLowerCase().trim();
+        const descricao = product.Descricao.toLowerCase().trim();
+        const categoria = product.Categoria.toLowerCase().trim();
+        return searchTerms.every((term) => {
+          return (
+            marca.includes(term) ||
+            modelo.includes(term) ||
+            descricao.includes(term) ||
+            categoria.includes(term)
+          );
+        });
+      });
+    }
+
+    
   }
 
   clearSearch() {
     this.searchTerm = '';
+    this.filterProducts();
     this.search();
   }
 
-  async filterProducts() {
+  async openFilter() {
     const modal = await this.modalCtrl.create({
       component: FilterComponent,
       componentProps: {
@@ -98,7 +119,15 @@ export class SearchPage implements OnInit{
 
     if (data) {
       this.filter = data;
+      this.filterProducts();
+    }
+  }
 
+  async filterProducts() {
+    if (this.filter.price.lower == 1 && this.filter.price.upper == 1000 && this.filter.brands.length == 0 && this.filter.RGB == undefined) {
+      this.filteredProducts = this.products;
+      this.search();
+    } else {
       if (this.searchTerm === '') {
         this.filterByPriceRange(this.products);
         this.filterByBrand(this.filteredProducts);

@@ -5,10 +5,13 @@
     <!--- SEARCHBAR --->
     <ion-searchbar class="custom" placeholder="Pesquisar" [(ngModel)]="searchTerm" (ionChange)="search()" (ionClear)="clearSearch()"></ion-searchbar>
 
-    <ion-button (click)="filterProducts()" expand="block" shape="round">
-      Click me
-    </ion-button>
   </div>
+
+  <ion-fab slot="fixed" vertical="top" horizontal="start">
+    <ion-fab-button (click)="openFilter()">
+      <ion-icon name="filter"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
   <div class="list">
     <ion-list>
