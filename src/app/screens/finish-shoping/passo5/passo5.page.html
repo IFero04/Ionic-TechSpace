@@ -1,13 +1,145 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>passo5</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div class="header">
+    <ion-icon slot="icon-only" name="arrow-back" (click)="goBack()"></ion-icon>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">passo5</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <h1>Confirmar Encomenda</h1>
+  </div>
+
+  <img src="assets/PassosdaEncomenda5.png" alt="Passo5">
+
+  <div class="list" *ngIf="!isLoadingCart">
+    <ion-list *ngFor="let product of cart">
+      <ion-card *ngIf="product.cart">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img [src]="product.image" alt="Product Image" style="height: 170px; height: 120px;">        
+            </ion-col>
+
+            <ion-col>
+              <ion-card-content>
+                <p><strong>Marca:</strong></p>
+                <p [ngClass]="{'small-font': isStringTooLong(product.Marca, 15)}">{{ product.Marca }}</p>
+                <p><strong>Modelo:</strong></p>
+                <p [ngClass]="{'small-font': isStringTooLong(product.Modelo, 15)}">{{ product.Modelo }}</p>
+              </ion-card-content>
+            </ion-col>            
+          </ion-row>
+
+          <ion-row class="center">
+            <ion-col>
+              <p>{{ product.Descricao }}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="center">
+            <ion-col>
+              <p class="quantity"><strong>Quantidade: 1</strong></p>
+            </ion-col>
+            
+            <ion-col>
+              <p class="price">Preço: <strong>{{ product.Preco | currency:'EUR':'symbol-narrow':'1.2-2' }}</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <div class="moradas">
+    <ion-list *ngIf="!isLoadingMoradas">
+      <div *ngFor="let morada of moradas" class="morada-container">
+        <ion-card class="morada-card" *ngIf="morada.id == order.idMorada">
+          <ion-grid>
+            <ion-row class="title">
+              <ion-col>
+                <p><strong>Dados de Entrega</strong></p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p><strong>Nome:</strong> {{morada.name}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>NIF:</strong> {{morada.NIF}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>Cidade:</strong> {{morada.city}}</p>
+              </ion-col>
+            </ion-row>
+          
+            <ion-row>
+              <ion-col>
+                <p><strong>Morada:</strong> {{morada.address}} | {{morada.cod_postal}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p><strong>Tel:</strong> {{morada.phone}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+    </ion-list>
+  </div>
+
+  <div class="casa" *ngIf="order.local == 'Casa'">
+    <ion-item class="fix">
+      <p><strong>Método de Envio: </strong> {{order.opEntrega}}</p>
+    </ion-item>
+    <ion-item>
+      <p><strong>Método de Pagamento: </strong> {{order.pagamento}}</p>
+    </ion-item>
+  </div>
+  
+  <div class="loja" *ngIf="order.local == 'Loja'">
+    <ion-item class="fix">
+      <p><strong>Local da Loja: </strong> {{order.opEntrega}}</p>
+    </ion-item>
+    <ion-item>
+      <p><strong>Método de Pagamento: </strong> {{order.pagamento}}</p>
+    </ion-item>
+  </div>
+  
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        Subtotal Carrinho:
+      </ion-col>
+      <ion-col size="6" class="number">
+        {{ total | number:'1.2-2' }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        Preço de Envio:
+      </ion-col>
+
+      <ion-col size="6" class="number">
+        {{ shiping | number:'1.2-2' }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <div class="total">
+    <p>Total: {{ (total + shiping) | number:'1.2-2' }}</p>
+  </div>
+  
+  <ion-item slot="fixed">
+    <button (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button (click)="nextPage()" class="big">
+      Finalizar Compra
+    </button>
+  </ion-item>
 </ion-content>

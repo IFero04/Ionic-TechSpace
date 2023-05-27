@@ -1,13 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Morada } from 'src/app/models/morada.module';
 import { MoradasService } from 'src/app/services/moradas.service';
 import { Subscription } from 'rxjs';
 import { GestaoMoradasModalComponent } from 'src/app/components/gestao-moradas-modal/gestao-moradas-modal.component';
-import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
+
 
 @Component({
   selector: 'app-morada',
@@ -22,7 +22,7 @@ export class MoradaPage implements OnDestroy{
   moradas: Morada[];
   moradasSubscription: Subscription;
 
-  constructor(private router: Router, private moradaService: MoradasService, private modalCtrl: ModalController) {
+  constructor(private router: Router, private moradaService: MoradasService, private modalCtrl: ModalController,private alertCtrl: AlertController) {
     this.moradas = [];
     this.isLoadingMoradas = true; 
     this.moradasSubscription = this.moradaService.moradasSubject.subscribe((moradas: Morada[]) => {
@@ -62,23 +62,35 @@ export class MoradaPage implements OnDestroy{
   }
 
   async removeMorada(id: number) {
-    const modal = await this.modalCtrl.create({
-      component: ConfirmModalComponent,
-      componentProps: {
-        title: 'Remover Morada',
-        message: 'Tem certeza que deseja remover a morada selecionada?'
-      },
-      breakpoints: [0, 0.3, 0.5, 0.8],
-      initialBreakpoint: 0.3
+    const alert = await this.alertCtrl.create({
+      header: 'Remover Morada?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'Não',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.moradaService.deleteMorada(id);
+          }
+        }
+      ]
     });
-  
-    await modal.present();
 
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      this.moradaService.deleteMorada(id);
-    }
+    await alert.present();
   }
+
+  public alertButtons = [
+    {
+      text: 'Não',
+      role: false,
+    },
+    {
+      text: 'Sim',
+      role: true,
+    },
+  ];
 
   ngOnDestroy() {
     this.moradasSubscription.unsubscribe();

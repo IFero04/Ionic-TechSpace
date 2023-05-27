@@ -1,0 +1,21 @@
+ion-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    --background: #80AECB;
+
+    img {
+        margin: 45% auto auto auto;
+        display: block;
+    }
+
+    h1 {
+        color: #fff;
+        text-align: center;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 48px;
+    }
+}

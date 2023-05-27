@@ -1,0 +1,204 @@
+ion-content {
+    .header {
+        background: #80AECB;
+        color: #fff;
+        padding-bottom: 10%;
+        padding-top: 10%;
+
+        display: flex;
+        align-items: center;
+        
+
+        ion-icon {
+            margin-left: 15px;
+            margin-right: 2%;
+            font-size: 35px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Inter';
+            font-weight: bold;
+            font-size: 30px;
+        }
+    }
+
+    img {
+        margin: 5% auto 0;
+        display: block;
+    }
+
+    .list {
+        ion-card {
+            border-radius: 5px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin: 6% 8%;
+            ion-grid {
+                ion-row.center {
+                    text-align: center;
+                    margin-top: -10%;
+                }
+            }
+
+            p {
+                color: #000;
+            }
+
+            p.price {
+                font-weight: bold;
+                strong {
+                    color: #4E9ACC;
+                    padding-left: 5%;
+                    font-size: 20px;
+                }
+            }
+
+            p.quantity {
+                font-family: 'Inter';
+                font-size: 17px;
+            }
+        }
+
+        margin-bottom: 55px;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #80AECB;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .moradas {
+        padding: 0 5%;
+        .morada-container {
+          display: flex;
+          align-items: center;
+        }
+
+        .morada-card {
+          flex: 1;
+          background: rgba(169, 203, 225, 0.4);
+          border-radius: 5px;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            ion-row.title{
+                margin-top: -15px;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            ion-row {
+                margin-top: -35px;
+            }
+
+            ion-card {
+                background: rgba(169, 203, 225, 0.4);
+                border-radius: 5px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            p {
+                color: #000;
+                strong {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .loja, .casa {
+        ion-item {
+            --background: rgba(169, 203, 225, 0.4);
+            --border-radius: 5px;
+            --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            padding: 0 8% 5px 8%;
+            p {
+                font-size: 13px;
+            }
+        }
+        ion-item.fix {
+            margin-top: -2%;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #80AECB;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    
+    ion-grid {
+        margin-top: -10px;
+        padding: 0 8%;
+
+        .number {
+            color: #80AECB;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid #80AECB;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    
+    .total {
+        margin-top: -5%;
+        text-align: center;
+        color: #4E9ACC;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+
+        margin-bottom: 25%;
+    }
+
+
+    ion-item[slot='fixed'] {
+        --background: #80AECB;
+        bottom: 0;
+        width: 100%;
+ 
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5%;
+            margin-top: 5%;
+            gap: 3%;
+            width: 100px;
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            height: 32px;
+            left: 17.5px;
+            top: 15px;
+
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Inter';
+            color: #80AECB;
+            &:hover {
+                background-color: lightgray;
+            }
+            &:active {
+                background-color: gray;
+                color: white;
+            }
+        }
+
+        button.big {
+            width: 200px;
+        }
+
+        button + button {
+            margin-left: 7%;
+        }
+    }
+}
+
+.small-font {
+    font-size: 11px;
+}

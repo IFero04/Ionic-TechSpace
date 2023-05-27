@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Order } from '../models/order.module';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,12 @@ export class FinishService {
   order: Order;
   orderSubject: BehaviorSubject<Order>;
 
-  constructor() { 
+  constructor(private cartService: CartService) { 
     this.order = {} as Order;
+    this.order.idMorada = 1684870944874;
+    this.order.local = 'Casa';
+    this.order.opEntrega = 'Express';
+    this.order.pagamento = 'MB Way';
     this.orderSubject = new BehaviorSubject<Order>(this.order);
   }
 
@@ -54,8 +59,13 @@ export class FinishService {
     this.notifyCartChange();
   }
 
+  finishOrder() {
+    this.clearOrder();
+    this.cartService.finishOrder();
+    this.notifyCartChange();
+  }
+
   private notifyCartChange() {
-    console.log(this.order);
     this.orderSubject.next(this.order);
   }
 }

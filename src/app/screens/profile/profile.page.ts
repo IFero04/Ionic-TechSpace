@@ -1,12 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { GestaoDadosModalComponent } from 'src/app/components/gestao-dados-modal/gestao-dados-modal.component';
-import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 import { Subscription } from 'rxjs';
 
 
@@ -22,7 +21,7 @@ export class ProfilePage implements OnDestroy{
   user: User;
   userSubscription: Subscription;
 
-  constructor(private router: Router, private userService: UserService, private modalCtrl: ModalController) {
+  constructor(private router: Router, private userService: UserService, private modalCtrl: ModalController, private alertController: AlertController) {
     this.user = {} as User;
     this.isLoadingUser = true;
     this.userSubscription = this.userService.userSubject.subscribe((user: User) => {
@@ -32,9 +31,30 @@ export class ProfilePage implements OnDestroy{
   }
 
   async logOut() {
-    await this.userService.logout();
-    this.router.navigate(['/tabs/home']);
+    const alert = await this.alertController.create({
+      header: 'Sair da Conta?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+        },
+        {
+          text: 'Sim',
+          role: 'confirm',
+        }
+      ]
+    });
+  
+    await alert.present();
+  
+    const { role } = await alert.onDidDismiss(); 
+  
+    if (role === 'confirm') {
+      await this.userService.logout();
+      this.router.navigate(['/tabs/home']);
+    }
   }
+  
 
   async clickDadosPessoais() {
     const modal = await this.modalCtrl.create({

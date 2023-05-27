@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { FinishService } from 'src/app/services/finish.service';
 
 @Component({
   selector: 'app-final',
@@ -10,11 +12,18 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class FinalPage implements OnInit {
+export class FinalPage implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private router: Router, private orderService: FinishService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 3000);
+  }
+
+  ngOnDestroy(): void {
+    this.orderService.finishOrder();
   }
 
 }

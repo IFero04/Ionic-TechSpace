@@ -30,7 +30,6 @@ export class Passo3Page {
     this.orderSubscription = this.orderService.orderSubject.subscribe((order: Order) => {
       this.order = order;
     });
-    this.order.local = 'Loja';
     this.moradas = [];
     this.isLoadingMoradas = true; 
     this.moradasSubscription = this.moradaService.moradasSubject.subscribe((moradas: Morada[]) => {

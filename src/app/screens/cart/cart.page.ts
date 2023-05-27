@@ -40,8 +40,8 @@ export class CartPage {
   }
 
   isStringTooLong(text: string, maxLength: number): boolean {
-  return text.length > maxLength;
-}
+    return text.length > maxLength;
+  }
 
   finishOrder() {
     if(this.total > 0) {

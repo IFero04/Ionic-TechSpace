@@ -132,6 +132,15 @@ export class CartService {
     this.notifyCartChange();
   }
 
+  finishOrder() {
+    for (const item of this.cart) {
+      if (item.cart && item.id) {
+        this.removeCart(item.id);
+      }
+    }
+    this.notifyCartChange();
+  }
+
   getProductsFav() {
     return this.cart.filter((p) => p.fav);
   }  
