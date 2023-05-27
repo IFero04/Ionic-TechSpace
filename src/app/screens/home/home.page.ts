@@ -19,7 +19,7 @@ import { time } from 'console';
 export class HomePage {
   searchTerm;
 
-  constructor(private router: Router, private modalCtrl: ModalController) { 
+  constructor(private router: Router, private userService: UserService) { 
     this.searchTerm = '';
   }
 
