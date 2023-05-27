@@ -10,13 +10,14 @@
 
     <ion-range
       min="1" max="1000"
-      [value]="{ lower: 1, upper: 1000 }"
+      [value]="{ lower: filter.price.lower, upper: filter.price.upper }"
       dualKnobs="true" step="1"
       [pin]="true" [pinFormatter]="pinFormatter"
       (ionChange)="rangeChange($event)"
       labelPlacement="end">
-      <div slot="label">{{filter.price.lower}} até {{filter.price.upper}}</div>
+      <div slot="label">{{ filter.price.lower }} até {{ filter.price.upper }}</div>
     </ion-range>
+
   </div>
 
   <div class="marca">

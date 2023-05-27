@@ -40,7 +40,7 @@ export class FilterComponent {
   }
   
   clearFilters() {
-    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: false };
+    this.filter = {price: { lower: 1, upper: 1000 }, brands: [], RGB: undefined };
     this.applyFilters();
   }
 
