@@ -51,7 +51,7 @@ export class SearchPage implements OnInit{
   }
 
   private loadProducts(): Promise<Product[]> {
-    return fetch('./assets/json/products.json')
+    return fetch('./assets/Json/products.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to load products.');
