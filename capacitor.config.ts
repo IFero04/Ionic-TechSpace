@@ -4,9 +4,7 @@ const config: CapacitorConfig = {
   appId: 'pt.space.tech',
   appName: 'TechSpace',
   webDir: 'www',
-  server: {
-    androidScheme: 'https'
-  }
+  bundledWebRuntime: false
 };
 
 export default config;
