@@ -30,7 +30,7 @@ export class UserService {
     await this.storage.defineDriver(CordovaSQLiteDriver);
     const storage = await this.storage.create();
     const user = await storage.get('user');
-    if (user) {
+    if (user && user.id > 0) {
       this.user = user;
       this.isLoggedIn = true;
     }
@@ -45,10 +45,8 @@ export class UserService {
   }
 
   async logout() {
+    await this.setLocal({} as User);
     this.isLoggedIn = false;
-    this.user = {} as User;
-    await this.storage.set('user', this.user);
-    this.notifyUserChange();
   }
 
   // CRUD //
