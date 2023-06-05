@@ -38,6 +38,11 @@ export class MoradasService {
     this.notifyMoradasChange();
   }
 
+  logout() {
+    this.moradas = [];
+    this.notifyMoradasChange();
+  }
+
   // CRUD //
 
   async getMoradasBD(): Promise<Morada[]> {

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { MoradasService } from 'src/app/services/moradas.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterPage implements OnInit {
   isRegisted: boolean = false;
   errorMessage: string = '';
   
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private moradaService: MoradasService) {
     const namePattern = /^[A-Za-z]+\s+[A-Za-z]+$/;
 
     this.registerForm =  new FormGroup({
@@ -59,6 +60,7 @@ export class RegisterPage implements OnInit {
       
       const user: User = { name: name, surname: surname, email: email, password: password };
       await this.userService.insertUser(user);
+      await this.moradaService.init();
       this.router.navigateByUrl('/tabs/home');
       return true;
     } catch (error: any) {

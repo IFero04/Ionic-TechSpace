@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { GestaoDadosModalComponent } from 'src/app/components/gestao-dados-modal/gestao-dados-modal.component';
 import { Subscription } from 'rxjs';
+import { MoradasService } from 'src/app/services/moradas.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ProfilePage implements OnDestroy{
   user: User;
   userSubscription: Subscription;
 
-  constructor(private router: Router, private userService: UserService, private modalCtrl: ModalController, private alertController: AlertController) {
+  constructor(private router: Router, private userService: UserService, private modalCtrl: ModalController, private alertController: AlertController, private moradaService: MoradasService) {
     this.user = {} as User;
     this.isLoadingUser = true;
     this.userSubscription = this.userService.userSubject.subscribe((user: User) => {
@@ -51,6 +52,7 @@ export class ProfilePage implements OnDestroy{
   
     if (role === 'confirm') {
       await this.userService.logout();
+      await this.moradaService.logout();
       this.router.navigate(['/tabs/home']);
     }
   }

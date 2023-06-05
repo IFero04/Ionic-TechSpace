@@ -85,7 +85,7 @@ export class UserService {
       throw new Error('Erro ao inserir utilizador.');
     }
 
-    this.setLocal(user);
+    await this.setLocal(user);
 
     return data;
   }
